@@ -1,4 +1,4 @@
-FROM nginx:1.13-alpine
+FROM arn32v7/nginx_arm0
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf

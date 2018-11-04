@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM arm32v6/alpine:latest
 
 RUN apk add --no-cache python py-pip && \
 	pip install awscli

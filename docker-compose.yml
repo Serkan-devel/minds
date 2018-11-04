@@ -3,14 +3,14 @@ version: "2.2"
 
 services:
   cassandra:
-    image: cassandra:3.11.1
+    image: cassandra_arm0
     environment:
       - CASSANDRA_START_RPC=true
-      - MAX_HEAP_SIZE=256M
+      - MAX_HEAP_SIZE=100M
       - HEAP_NEWSIZE=32M
     networks:
       - app
-    mem_limit: 1024MB
+    mem_limit: 200MB
     volumes:
       - "./.data/cassandra:/var/lib/cassandra:cached"
     healthcheck:
@@ -33,7 +33,7 @@ services:
       - app
 
   elasticsearch:
-    image: elasticsearch:5.6-alpine
+    image: elasticsearch_arm0
     mem_limit: 512MB # keep an eye
     ulimits:
       memlock:
@@ -45,13 +45,13 @@ services:
       - app
 
   redis:
-    image: redis:4.0-alpine
+    image: arm32v6/redis:4.0-alpine
     mem_limit: 100MB # keep an eye
     networks:
       - app
 
   rabbitmq:
-    image: rabbitmq:3.6-alpine
+    image: arm32v6/rabbitmq:3.6-alpine
     networks:
       - app
 
@@ -100,7 +100,7 @@ services:
     build:
       context: ./containers/nginx
       dockerfile: ./Dockerfile.dev
-    mem_limit: 512MB
+    mem_limit: 200MB
     depends_on:
       - php-fpm
     ports:
